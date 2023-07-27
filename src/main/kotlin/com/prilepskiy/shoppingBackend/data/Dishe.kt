@@ -8,7 +8,7 @@ data class Dishe (
     val description: String="",
     @Id
     val id: String?=null,
-    val category: Category,
+    val categoryName: String,
     val image_url: String="",
     val name: String="",
     val price: Int=0,
