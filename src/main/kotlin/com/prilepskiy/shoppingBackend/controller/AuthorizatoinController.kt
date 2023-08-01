@@ -4,41 +4,43 @@ import com.prilepskiy.shoppingBackend.data.User
 import com.prilepskiy.shoppingBackend.domain.model.UserDTO
 import com.prilepskiy.shoppingBackend.domain.service.DisheService
 import com.prilepskiy.shoppingBackend.domain.service.UserService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import kotlinx.coroutines.reactive.awaitLast
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toMono
 
+//не знаю возможно переделаю spring security
 @RestController
 @RequestMapping("/auth")
 class AuthorizatoinController(private val userService: UserService) {
 
-    @GetMapping("/registration")
+    @PostMapping("/registration")
     @ResponseBody
-    fun registration(user: UserDTO): Mono<UserDTO> = userService.save(User(
-            id = user.id,
-            token = user.token,
-            userName = user.userName,
-            avatarUrl = user.avatarUrl,
-            email = user.email,
-    )).thenMany(userService.getUserByToken(user.token).map { UserDTO(
-            user.id,
-            token = user.token,
-            userName = user.userName,
-            avatarUrl = user.avatarUrl,
-            email = user.email,
-    ) }).last()
+    fun registration(
+        @RequestHeader userName: String,
+        @RequestHeader password: String,
+        @RequestHeader avatarUrl: String,
+        @RequestHeader email: String,
+    ): Mono<UserDTO> = userService.save(
+        User(
+            userName = userName,
+            password = password,
+            avatarUrl = avatarUrl,
+            email = email,
+        )
+    ).thenMany(userService.getUserByEmail(email)).last().map {
+        UserDTO(it.id, it.token, it.userName, it.password, it.avatarUrl, it.email, it.favoriteId, it.historyId)
+    }
 
     @GetMapping
     @ResponseBody
-    fun auth(user: UserDTO):UserDTO{
+    fun auth(user: UserDTO): UserDTO {
         return TODO()
     }
+
     @GetMapping("/getUser")
     @ResponseBody
-    fun getUser(token:String):UserDTO{
-        return TODO()
+    fun getUser(@RequestHeader token: String): Mono<UserDTO> = userService.getUserByToken(token).map {
+        UserDTO(it.id, it.token, it.userName,it.password, it.avatarUrl, it.email, it.favoriteId, it.historyId)
     }
 }

@@ -8,45 +8,49 @@ import org.springframework.web.bind.annotation.GetMapping
 @Service
 class DisheService(private val disheRepository: DisheRepository) {
 
-    fun getDishe() = disheRepository.deleteAll().thenMany(disheRepository
-            .saveAll(listOf(
+    fun getDishe() = disheRepository.deleteAll().thenMany(
+        disheRepository
+            .saveAll(
+                listOf(
                     Dishe(
-                            description = "",
-                            categoryName = "Fallout",
-                            image_url = "",
-                            name = "test",
-                            price = 0,
-                            weight=0
+                        description = "",
+                        categoryName = "Fallout",
+                        image_url = "",
+                        name = "test",
+                        price = 0,
+                        weight = 0
 
                     ),
                     Dishe(
-                            description = "",
-                            categoryName = "Fallout",
-                            image_url = "",
-                            name = "test1",
-                            price = 0,
-                            weight=0
+                        description = "",
+                        categoryName = "Fallout",
+                        image_url = "",
+                        name = "test1",
+                        price = 0,
+                        weight = 0
 
                     ),
                     Dishe(
-                            description = "",
-                            categoryName = "Супы",
-                            image_url = "",
-                            name = "test1",
-                            price = 0,
-                            weight=0
+                        description = "",
+                        categoryName = "Супы",
+                        image_url = "",
+                        name = "test1",
+                        price = 0,
+                        weight = 0
 
                     )
 
-            ))).thenMany(disheRepository.findAll())
+                )
+            )
+    ).thenMany(disheRepository.findAll())
 
-    fun getDisheById(id:String) =disheRepository.findById(id)
+    fun getDisheById(id: String) = disheRepository.findById(id)
 
     fun getDisheByCategory(categoryName: String) = disheRepository.findAll().filter {
-        it.categoryName==categoryName
+        it.categoryName == categoryName
     }
 
-    fun getDisheByCategory(categoryName: String,id: String) = disheRepository.findAll().filter {
-        it.categoryName==categoryName
-    }.filter { it.id==id }
+    fun getDisheByCategory(categoryName: String, id: String) = disheRepository.findAll().filter {
+        it.categoryName == categoryName
+    }.filter { it.id == id }
 }

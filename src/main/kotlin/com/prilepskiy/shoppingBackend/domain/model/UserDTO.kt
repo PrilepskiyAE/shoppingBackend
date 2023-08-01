@@ -4,8 +4,9 @@ import java.util.UUID
 
 data class UserDTO (
     val id:String?=null,
-    val token: String=UUID.randomUUID(),
+    val token: String=UUID.randomUUID().toString(),
     val userName: String,
+    val password:String,
     val avatarUrl: String,
     val email: String,
     val favoriteId:List<String> = listOf(),

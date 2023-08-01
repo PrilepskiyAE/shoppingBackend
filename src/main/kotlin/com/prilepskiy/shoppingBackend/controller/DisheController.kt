@@ -8,30 +8,31 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/Dishe")
 class DisheController(private val dusheService: DisheService) {
     @GetMapping
-    fun getDihse()=dusheService.getDishe().map {
+    fun getDihse() = dusheService.getDishe().map {
         DisheDTO(
-                description = it.description,
-                id = it.id,
-                categoryName = it.categoryName,
-                image_url = it.image_url,
-                name = it.name,
-                price = it.price,
-                tegs=it.tegs,
-                weight = it.weight
+            description = it.description,
+            id = it.id,
+            categoryName = it.categoryName,
+            image_url = it.image_url,
+            name = it.name,
+            price = it.price,
+            tegs = it.tegs,
+            weight = it.weight
         )
     }
+
     @GetMapping("/byCategories")
     @ResponseBody
-    fun getDisheByCategory(@RequestParam categoryName:String)=dusheService.getDisheByCategory(categoryName).map {
+    fun getDisheByCategory(@RequestParam categoryName: String) = dusheService.getDisheByCategory(categoryName).map {
         DisheDTO(
-                description = it.description,
-                id = it.id,
-                categoryName = it.categoryName,
-                image_url = it.image_url,
-                name = it.name,
-                price = it.price,
-                tegs=it.tegs,
-                weight = it.weight
+            description = it.description,
+            id = it.id,
+            categoryName = it.categoryName,
+            image_url = it.image_url,
+            name = it.name,
+            price = it.price,
+            tegs = it.tegs,
+            weight = it.weight
         )
     }
 //    @ResponseBody

@@ -9,9 +9,13 @@ import reactor.core.publisher.Mono
 @Service
 class UserService(private val userRepository: UserRepository) {
     fun save(user: User) = userRepository.save(user).thenMany(userRepository.findAll())
-    fun getUserById(id:String) =userRepository.findById(id)
+    fun getUserById(id: String) = userRepository.findById(id)
+
+    fun getUserByEmail(email: String) = userRepository.findAll().filter {
+        it.email == email
+    }.last()
 
     fun getUserByToken(token: String) = userRepository.findAll().filter {
-        it.token==token
+        it.token == token
     }.last()
 }

@@ -4,14 +4,14 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
-data class Dishe (
-    val description: String="",
+data class Dishe(
+    val description: String = "",
     @Id
-    val id: String?=null,
+    val id: String? = null,
     val categoryName: String,
-    val image_url: String="",
-    val name: String="",
-    val price: Int=0,
+    val image_url: String = "",
+    val name: String = "",
+    val price: Int = 0,
     val tegs: List<String> = listOf(),
-    val weight: Int=0
+    val weight: Int = 0
 )

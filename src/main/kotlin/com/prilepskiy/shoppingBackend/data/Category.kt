@@ -5,9 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.util.UUID
 
 @Document
-data class Category (
+data class Category(
     @Id
     val id: String? = null,
-    val image_url: String ="",
-    val name: String=""
+    val image_url: String = "",
+    val name: String = ""
 )

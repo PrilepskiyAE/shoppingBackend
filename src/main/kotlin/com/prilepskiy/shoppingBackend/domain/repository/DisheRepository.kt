@@ -7,4 +7,4 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
-interface DisheRepository  : ReactiveMongoRepository<Dishe, String>
+interface DisheRepository : ReactiveMongoRepository<Dishe, String>
