@@ -22,7 +22,7 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	// Used for creating tokens
-	implementation("com.auth0:java-jwt:3.18.3")
+	implementation ("io.jsonwebtoken:jjwt:0.9.1")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")

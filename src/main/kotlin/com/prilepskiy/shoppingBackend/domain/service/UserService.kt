@@ -18,4 +18,8 @@ class UserService(private val userRepository: UserRepository) {
     fun getUserByToken(token: String) = userRepository.findAll().filter {
         it.token == token
     }.last()
+
+    fun getUserByName(name: String) = userRepository.findAll().filter {
+        it.userName == name
+    }.last()
 }
