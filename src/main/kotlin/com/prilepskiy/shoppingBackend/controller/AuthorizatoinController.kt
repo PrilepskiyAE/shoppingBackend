@@ -11,10 +11,10 @@ import reactor.kotlin.core.publisher.toMono
 
 //не знаю возможно переделаю spring security
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("auth")
 class AuthorizatoinController(private val userService: UserService) {
 
-    @PostMapping("/registration")
+    @PostMapping("reg")
     @ResponseBody
     fun registration(
         @RequestHeader userName: String,
