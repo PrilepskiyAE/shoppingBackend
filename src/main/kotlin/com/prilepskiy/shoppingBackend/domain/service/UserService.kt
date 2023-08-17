@@ -1,14 +1,12 @@
 package com.prilepskiy.shoppingBackend.domain.service
 
-import com.prilepskiy.shoppingBackend.data.User
+import com.prilepskiy.shoppingBackend.data.UserD
 import com.prilepskiy.shoppingBackend.domain.repository.UserRepository
-import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
-import reactor.core.publisher.Mono
 
 @Service
 class UserService(private val userRepository: UserRepository) {
-    fun save(user: User) = userRepository.save(user).thenMany(userRepository.findAll())
+    fun save(userD: UserD) = userRepository.save(userD).thenMany(userRepository.findAll())
     fun getUserById(id: String) = userRepository.findById(id)
 
     fun getUserByEmail(email: String) = userRepository.findAll().filter {
@@ -17,5 +15,8 @@ class UserService(private val userRepository: UserRepository) {
 
     fun getUserByToken(token: String) = userRepository.findAll().filter {
         it.token == token
+    }.last()
+    fun getUserByName(name: String) = userRepository.findAll().filter {
+        it.userName == name
     }.last()
 }
