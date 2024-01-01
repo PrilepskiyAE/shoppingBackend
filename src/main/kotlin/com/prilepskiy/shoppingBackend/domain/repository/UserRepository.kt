@@ -1,7 +1,6 @@
 package com.prilepskiy.shoppingBackend.domain.repository
 
-import com.prilepskiy.shoppingBackend.data.User
+import com.prilepskiy.shoppingBackend.data.UserD
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
-import org.springframework.data.repository.reactive.ReactiveCrudRepository
 
-interface UserRepository : ReactiveMongoRepository<User, String>
+interface UserRepository : ReactiveMongoRepository<UserD, String>
